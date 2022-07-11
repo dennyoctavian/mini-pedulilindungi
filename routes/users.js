@@ -81,4 +81,57 @@ router.post("/register", async function (req, res, next) {
   });
 });
 
+router.get("/covid-status", async function (req, res, next) {
+  const { username } = req.body;
+  const user = await User.findOne({
+    where: {
+      username: username,
+    },
+  });
+
+  if (!user) {
+    return res.status(200).json({
+      message: "user not found",
+    });
+  } else {
+    return res.status(200).json({
+      message: "success",
+      data: {
+        username: user.username,
+        name: user.name,
+        email: user.email,
+        status_covid: user.statusCovid,
+      },
+    });
+  }
+});
+
+router.post("/update-covid-status", async function (req, res, next) {
+  const { username, status_covid } = req.body;
+  const user = await User.findOne({
+    where: {
+      username: username,
+    },
+  });
+
+  if (!user) {
+    return res.status(200).json({
+      message: "user not found",
+    });
+  } else {
+    user.update({
+      statusCovid: status_covid,
+    });
+    return res.status(200).json({
+      message: "success",
+      data: {
+        username: user.username,
+        name: user.name,
+        email: user.email,
+        status_covid: user.statusCovid,
+      },
+    });
+  }
+});
+
 module.exports = router;

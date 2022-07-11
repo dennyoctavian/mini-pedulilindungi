@@ -14,7 +14,13 @@ router.post("/register", async function (req, res, next) {
   });
 });
 
-router.post("/check-in", async function (req, res, next) {});
-router.post("/check-out", async function (req, res, next) {});
+router.post("/check-in", async function (req, res, next) {
+  //cara cari siapa yang sedang login
+  //cara kirim location id
+});
+router.post("/check-out", async function (req, res, next) {
+  //cara cari siapa yang sedang login
+  //cara kirim location id
+});
 
 module.exports = router;
