@@ -1,7 +1,5 @@
 "use strict";
 const { Model } = require("sequelize");
-const { User } = import("./user.js");
-const { Place } = import("./place");
 module.exports = (sequelize, DataTypes) => {
   class HistoryVisiting extends Model {
     /**
@@ -11,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      HistoryVisiting.belongsTo(User);
-      HistoryVisiting.belongsTo(Place);
+      HistoryVisiting.belongsTo(models.User);
+      HistoryVisiting.belongsTo(models.Place);
     }
   }
   HistoryVisiting.init(
